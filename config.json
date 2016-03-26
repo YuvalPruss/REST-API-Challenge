@@ -1,0 +1,20 @@
+{
+	"widgets" : [
+		{
+			"widgetName" : "events",
+			"receiveParams" : [
+			{"paramName" : "client_id" , "paramType" : "int"},
+			{"paramName" : "from_date" , "paramType" : "datetime"},
+			{"paramName" : "to_date" , "paramType" : "datetime"}
+			],
+			"queryText" : 	"SELECT client_id , count(*) AS events_count FROM events WHERE (event_ts >= '{1}' and event_ts < '{2}') AND client_id = {0} GROUP BY 1 ORDER BY 1"
+		},
+		{
+			"widgetName" : "total_events",
+			"receiveParams" : [
+			{"paramName" : "client_id" , "paramType" : "int"}
+			],
+			"queryText" : 	"SELECT count(*) AS total_events FROM events WHERE client_id = {0}"
+		}
+	]
+}
